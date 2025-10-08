@@ -1,0 +1,13 @@
+services:
+    java:
+      container_name: tomcat9java11
+      image: tomcat9java11:0.1
+      ports:
+        - 8080:8080
+        - 8083:8083
+      volumes:
+        - ./gaj-server-main:/gaj-server-main
+        - ./conf/compilar.sh:/usr/local/bin/compilar.sh
+        #- ./keys/server.xml:/opt/tomcat/conf/server.xml
+        #- ./keys/sqlhosts:/etc/sqlhosts
+        - ./conf/m2-settings.xml:/root/.m2/settings.xml
