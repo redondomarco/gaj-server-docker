@@ -9,6 +9,12 @@ touch .env
 
 git clone https://gitlab.rosario.gob.ar/externos/gaj/gaj-server-main.git
 
+cd gaj-server-main
+
+git checkout feature-3.1.1
+
+cd ..
+
 make build
 
 make start

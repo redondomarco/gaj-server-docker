@@ -1,7 +1,7 @@
 services:
     java:
-      container_name: tomcat9java11
-      image: tomcat9java11:0.1
+      container_name: gaj-service
+      image: gaj-service:0.1
       ports:
         - 8080:8080
         - 8083:8083

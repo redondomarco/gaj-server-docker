@@ -1,6 +1,10 @@
-FROM debian:buster
+#FROM debian:buster
+FROM debian:stretch
 
-COPY conf/debian-buster.list /etc/apt/sources.list
+#COPY conf/debian-buster.list /etc/apt/sources.list
+
+COPY conf/debian-stretch.list /etc/apt/sources.list
+
 
 RUN apt-get update
 

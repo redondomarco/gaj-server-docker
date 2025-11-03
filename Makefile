@@ -2,7 +2,7 @@ include .env
 RUN = docker-compose run --no-deps --rm -u root mapservermr
 
 build:
-	docker build --debug -t tomcat9java11:0.1 .
+	docker build --debug -t gaj-service:0.1 .
 
 start:
 	@docker-compose up -d
