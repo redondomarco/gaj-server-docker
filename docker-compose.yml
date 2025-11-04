@@ -11,3 +11,17 @@ services:
         #- ./keys/server.xml:/opt/tomcat/conf/server.xml
         #- ./keys/sqlhosts:/etc/sqlhosts
         - ./conf/m2-settings.xml:/root/.m2/settings.xml
+        - ./conf/python-scripts:/root/python
+    db:
+        image: postgres:17
+        container_name: gajdb
+        restart: always
+        environment:
+          POSTGRES_DB: gaj
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: pass123
+        volumes:
+          #- ./m_gaj.27-03-23.esquema.sql:/docker-entrypoint-initdb.d/init-db.sql
+          - ./m_gaj.27-03-23.esquema.sql:/esquema.sql
+        ports:
+          - "5432:5432"
