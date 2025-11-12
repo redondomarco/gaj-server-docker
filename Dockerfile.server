@@ -1,0 +1,43 @@
+#FROM debian:buster
+FROM debian:stretch
+
+#COPY conf/debian-buster.list /etc/apt/sources.list
+
+COPY conf/debian-stretch.list /etc/apt/sources.list
+
+
+RUN apt-get update
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    htop vim zip unzip bash-completion wget git curl locate less wget openjdk-8-jdk \
+    # openjdk-11-jre-headless \
+    postgresql-client python-pip ipython3 \
+    tomcat8 tomcat8-admin tomcat8-docs tomcat8-examples \
+    maven
+
+RUN updatedb
+
+RUN pip install psycopg2-binary
+
+# Set environment variables for Java and Tomcat versions
+ENV JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
+ENV JAVA_OPTS="$JAVA_OPTS -Dspring.config.location=file:/etc/application-uat2.yml.mainjuzgamiento"
+ENV PATH=$PATH:$JAVA_HOME/bin
+ENV CATALINA_BASE="/var/lib/tomcat8"
+
+COPY conf/setenv.sh /usr/share/tomcat8/bin/
+RUN chmod +x /usr/share/tomcat8/bin/setenv.sh
+
+# Fix potential permissions issues if files were modified by root
+#RUN chown -R tomcat8:tomcat8 /etc/tomcat8 && \
+#    chown -R tomcat8:tomcat8 /var/lib/tomcat8
+
+#USER tomcat8
+
+EXPOSE 8080
+
+CMD ["/usr/share/tomcat8/bin/catalina.sh", "run"]
+
+#CMD ["tail", "-f", "/dev/null"]
+
+

@@ -1,0 +1,95 @@
+<settings>
+  <mirrors>
+    <mirror>
+      <!--This sends everything else to /public -->
+      <id>nexus</id>
+      <mirrorOf>*</mirrorOf>
+      <url>https://nexus.rosario.gob.ar/repository/maven-public/</url>
+    </mirror>
+    <mirror>
+        <id>osgeo-release</id>
+        <name>OSGeo Repository</name>
+        <url>https://repo.osgeo.org/repository/release/</url>
+        <mirrorOf>osgeo</mirrorOf>
+    </mirror>
+    <mirror>
+        <id>geoserver-releases</id>
+        <name>Boundless Repository</name>
+        <url>https://repo.osgeo.org/repository/Geoserver-releases/</url>
+        <mirrorOf>boundless</mirrorOf>
+    </mirror>
+  </mirrors>
+  <profiles>
+    <profile>
+        <id>localOverrides</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+        <properties>
+            <sua.api.lapso.dias>30</sua.api.lapso.dias>
+        </properties>
+    </profile>
+    <profile>
+      <id>nexus</id>
+      <!--Enable snapshots for the built in central repo to direct -->
+      <!--all requests to nexus via the mirror -->
+      <repositories>
+        <repository>
+          <id>central</id>
+          <url>https://nexus.rosario.gob.ar/repository/maven-central/</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+        <repository>
+          <id>central</id>
+          <url>https://nexus.rosario.gob.ar/repository/maven-releases/</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+        
+        <!-- TECSO -->
+        <repository>
+        <snapshots/>
+        <id>tecso-snapshot</id>
+        <name>tecso-snapshot</name>
+        <url>http://172.19.19.9:8081/artifactory/tecso-snapshot</url>
+        </repository>
+        <repository>
+        <snapshots/>
+        <id>tecso-release</id>
+        <name>tecso-release</name>
+        <url>http://172.19.19.9:8081/artifactory/tecso-release</url>
+        </repository>
+        <!-- TECSO -->
+
+        <!-- TMF -->
+        <repository>
+        <snapshots/>
+        <id>tmf-snapshot</id>
+        <name>tmf-snapshot</name>
+        <url>http://172.19.19.9:8081/artifactory/tmf-snapshot</url>
+        </repository>
+        <repository>
+        <snapshots/>
+        <id>tmf-release</id>
+        <name>tmf-release</name>
+        <url>http://172.19.19.9:8081/artifactory/tmf-release</url>
+        </repository>
+        <!-- TMF -->
+
+      </repositories>
+     <pluginRepositories>
+        <pluginRepository>
+          <id>central</id>
+          <url>https://nexus.rosario.gob.ar/repository/maven-central/</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+  <activeProfiles>
+    <!--make the profile active all the time -->
+    <activeProfile>nexus</activeProfile>
+  </activeProfiles>
+</settings>
