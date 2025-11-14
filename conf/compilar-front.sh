@@ -1,4 +1,6 @@
 cd /
+nvm install 10
+nvm use 10
 npm install -g @angular/cli
 
 #
