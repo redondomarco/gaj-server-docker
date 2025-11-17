@@ -1,0 +1,4 @@
+deb http://mirror.rosario.gov.ar/debian/ buster main contrib non-free
+deb http://mirror.rosario.gov.ar/debian/ buster-updates main contrib non-free
+#deb http://mirror.rosario.gov.ar/debian/ buster-backports main contrib non-free
+#deb http://mirror.rosario.gov.ar/debian-security/ buster/updates main contrib non-free
