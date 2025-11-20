@@ -19,20 +19,22 @@ RUN updatedb
 
 RUN pip install psycopg2-binary
 
+COPY ./keys/application-uat2.yml.mainjuzgamiento /etc/application.yml
+
 # Set environment variables for Java and Tomcat versions
 ENV JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
-ENV JAVA_OPTS="$JAVA_OPTS -Dspring.config.location=file:/etc/application-uat2.yml.mainjuzgamiento"
+ENV JAVA_OPTS="$JAVA_OPTS -Dspring.profiles.active=dev -Dspring.config.location=file:/etc/application.yml"
 ENV PATH=$PATH:$JAVA_HOME/bin
 ENV CATALINA_BASE="/var/lib/tomcat8"
 
-COPY conf/setenv.sh /usr/share/tomcat8/bin/
-RUN chmod +x /usr/share/tomcat8/bin/setenv.sh
+#COPY conf/setenv.sh /usr/share/tomcat8/bin/
+#RUN chmod +x /usr/share/tomcat8/bin/setenv.sh
 
 # Fix potential permissions issues if files were modified by root
 #RUN chown -R tomcat8:tomcat8 /etc/tomcat8 && \
 #    chown -R tomcat8:tomcat8 /var/lib/tomcat8
 
-#USER tomcat8
+USER tomcat8
 
 EXPOSE 8080
 

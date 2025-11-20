@@ -1,4 +1,17 @@
 services:
+    db:
+        image: postgis/postgis:12-3.4
+        container_name: gaj-db
+        #restart: always
+        environment:
+          POSTGRES_DB: gaj
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: pass123
+        volumes:
+          - ./keys/m_gaj.27-03-23.esquema.sql:/docker-entrypoint-initdb.d/init-db.sql
+          #- ./keys/m_gaj.27-03-23.esquema.sql:/esquema.sql
+        ports:
+          - "5432:5432"
     java:
       container_name: gaj-service
       image: gaj-service:0.1
@@ -14,39 +27,15 @@ services:
         - ./conf/python-scripts:/root/python
         - ./conf/homeroot:/root
         - ./conf/tomcat-users.xml:/etc/tomcat8/tomcat-users.xml
-        #- ./conf/homeroot/tmf.war:/var/lib/tomcat8/webapps/tmf.war
-        - ./keys/application-uat2.yml.mainjuzgamiento:/etc/application-uat2.yml.mainjuzgamiento
-    db:
-<<<<<<< HEAD
-        image: postgis/postgis:12-3.4
-=======
-        image: postgres:12
->>>>>>> b79a047 (agrego front)
-        container_name: gaj-db
-        #restart: always
-        environment:
-          POSTGRES_DB: gaj
-          POSTGRES_USER: root
-          POSTGRES_PASSWORD: pass123
-        volumes:
-<<<<<<< HEAD
-          - ./keys/m_gaj.27-03-23.esquema.sql:/docker-entrypoint-initdb.d/init-db.sql
-          #- ./keys/m_gaj.27-03-23.esquema.sql:/esquema.sql
-=======
-          #- ./m_gaj.27-03-23.esquema.sql:/docker-entrypoint-initdb.d/init-db.sql
-          - ./keys/m_gaj.27-03-23.esquema.sql:/esquema.sql
->>>>>>> b79a047 (agrego front)
-        ports:
-          - "5432:5432"
+        - ./conf/homeroot/tmf.war:/var/lib/tomcat8/webapps/tmf.war
+        #- ./keys/application-uat2.yml.mainjuzgamiento:/etc/application.yml
+        #- ./keys/application-uat2.yml.mainjuzgamiento:/gaj-server-main/src/tmf-main-project/tmf-service/src/main/resources/application.yml
     front:
       container_name: gaj-front
       image: gaj-front:0.1
       ports:
         - 4200:4200
       volumes:
-<<<<<<< HEAD
         - ./conf/compilar-front.sh:/usr/local/bin/compilar-front.sh
-=======
->>>>>>> b79a047 (agrego front)
         - ./gaj-frontend:/gaj-frontend
     

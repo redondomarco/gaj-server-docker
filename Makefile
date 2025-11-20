@@ -1,5 +1,5 @@
 include .env
-RUN = docker-compose run --no-deps --rm -u root mapservermr
+RUNSRV = docker-compose run --no-deps --rm -u root gaj-service
 
 build-server:
 	docker build --debug -t gaj-service:0.1 -f Dockerfile.server .
@@ -13,7 +13,7 @@ start:
 stop:
 	@docker-compose down
 
-restart: stop start
+restart: stop start logs
 
 consola-server:
 	./conf/shell.sh
@@ -22,7 +22,7 @@ consola-front:
 	./conf/shell-front.sh
 
 maven:
-	./conf/compilar.sh
+	${RUN} /usr/local/bin/compilar.sh
 
 ps:
 	@docker-compose ps
