@@ -34,7 +34,7 @@ ENV CATALINA_BASE="/var/lib/tomcat8"
 #RUN chown -R tomcat8:tomcat8 /etc/tomcat8 && \
 #    chown -R tomcat8:tomcat8 /var/lib/tomcat8
 
-USER tomcat8
+#USER tomcat8
 
 EXPOSE 8080
 
