@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #!/bin/bash
 
 #export NVM_DIR="$HOME/.nvm"
@@ -25,9 +24,3 @@ npm install --legacy-peer-deps
 npm install -g @angular/cli
 npm install @angular/cli
 ng serve --host 0.0.0.0
-=======
-cd src/tmf-frontend-ui/
-npm install --legacy-peer-deps
-npm install -g @angular/cli
-ng serve
->>>>>>> b79a047 (agrego front)
