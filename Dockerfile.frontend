@@ -37,14 +37,15 @@ RUN updatedb
 # Expose the port your application listens on (e.g., 3000)
 EXPOSE 4200
 
-CMD ["tail", "-f", "/dev/null"]
-
-#COPY ./gaj-frontend /
-#WORKDIR /gaj-frontend
-#RUN git checkout feature-3.1.1
-#WORKDIR /gaj-frontend/src/tmf-frontend-ui/
-#RUN npm install --legacy-peer-deps
-#RUN npm install -g @angular/cli
+COPY gaj-frontend /gaj-frontend
+WORKDIR /gaj-frontend
+RUN git config --global --add safe.directory /gaj-frontend
+RUN git checkout feature-3.1.1
+WORKDIR /gaj-frontend/src/tmf-frontend-ui/
+RUN npm install --legacy-peer-deps
+RUN npm install -g @angular/cli
 #npm install @angular/cli
 
-#CMD ["ng", "serve", "--host", "0.0.0.0"]
+CMD ["ng", "serve", "--host", "0.0.0.0"]
+
+#CMD ["tail", "-f", "/dev/null"]

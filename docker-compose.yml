@@ -37,5 +37,5 @@ services:
         - 4200:4200
       volumes:
         - ./conf/compilar-front.sh:/usr/local/bin/compilar-front.sh
-        - ./gaj-frontend:/gaj-frontend
+        #- ./gaj-frontend:/gaj-frontend
     
