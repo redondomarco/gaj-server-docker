@@ -23,4 +23,4 @@ cd /gaj-frontend/src/tmf-frontend-ui/
 npm install --legacy-peer-deps
 npm install -g @angular/cli
 npm install @angular/cli
-ng serve --host 0.0.0.0
+ng serve --host 0.0.0.0 --env=prod

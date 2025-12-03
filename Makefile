@@ -28,7 +28,10 @@ ps:
 	@docker-compose ps
 
 
-logs:
+logs-front:
+	docker logs -f gaj-front
+
+logs-server:
 	docker logs -f gaj-service
 
-rebuild:	stop build-server build-front start logs
+rebuild:	stop build-server build-front start logs-front

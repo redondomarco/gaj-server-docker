@@ -42,10 +42,11 @@ WORKDIR /gaj-frontend
 RUN git config --global --add safe.directory /gaj-frontend
 RUN git checkout feature-3.1.1
 WORKDIR /gaj-frontend/src/tmf-frontend-ui/
+COPY keys/environment.docker.ts /gaj-frontend/src/tmf-frontend-ui/src/environments/environment.uat2.ts 
 RUN npm install --legacy-peer-deps
 RUN npm install -g @angular/cli
 #npm install @angular/cli
 
-CMD ["ng", "serve", "--host", "0.0.0.0", "--disable-host-check", "--configuration=uat"]
+CMD ["ng", "serve", "--host", "0.0.0.0", "--disable-host-check", "--configuration=uat2"]
 
 #CMD ["tail", "-f", "/dev/null"]
