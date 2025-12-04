@@ -13,7 +13,7 @@ start:
 stop:
 	@docker-compose down
 
-restart: stop start logs
+restart: stop start
 
 consola-server:
 	./conf/shell.sh

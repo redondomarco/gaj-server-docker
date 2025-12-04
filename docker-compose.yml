@@ -22,7 +22,7 @@ services:
         - ./gaj-server-main:/gaj-server-main
         - ./conf/compilar.sh:/usr/local/bin/compilar.sh
         #- ./keys/server.xml:/opt/tomcat/conf/server.xml
-        #- ./keys/sqlhosts:/etc/sqlhosts
+        - ./keys/sqlhosts:/etc/sqlhosts
         - ./keys/m2-settings-v2.xml:/root/.m2/settings.xml
         - ./conf/python-scripts:/root/python
         - ./conf/homeroot:/root
