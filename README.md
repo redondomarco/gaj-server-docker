@@ -90,3 +90,15 @@ Type "help" for help.
 
 gaj=# SELECT * FROM pg_catalog.pg_tables;
 ```
+
+para guardar un dump de la base:
+
+docker exec -t gaj-db pg_dumpall -c -U root > dump_$(date +%Y-%m-%d_%H_%M_%S).sql
+
+para restaurarlo
+
+make stop
+
+sudo rm data/pg/*
+
+cat keys/dump_2025-12-09_15_14_17.sql | docker exec -i gaj-db psql -U root -d gaj

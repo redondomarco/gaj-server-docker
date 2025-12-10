@@ -9,6 +9,7 @@ services:
           POSTGRES_PASSWORD: pass123
         volumes:
           - ./keys/m_gaj.27-03-23.esquema.sql:/docker-entrypoint-initdb.d/init-db.sql
+          - ./data/pg:/var/lib/postgresql/data
           #- ./keys/m_gaj.27-03-23.esquema.sql:/esquema.sql
         ports:
           - "5432:5432"
